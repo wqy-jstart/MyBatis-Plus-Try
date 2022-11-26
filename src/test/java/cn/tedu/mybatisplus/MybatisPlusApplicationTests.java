@@ -21,7 +21,7 @@ class MybatisPlusApplicationTests {
     @Autowired
     private UserMapper userMapper;
 
-    @Test
+    @Test // 测试查询列表
     void contextLoads() {
         // 参数是一个Wrapper ,条件构造器,这里先不用 null
         // 查询全部用户
@@ -51,7 +51,7 @@ class MybatisPlusApplicationTests {
         log.debug("修改成功!受影响的行数为:{}",i);
     }
 
-    @Test//测试乐观锁成功
+    @Test// 测试乐观锁成功
     public void testOptimisticLocker1(){
         // 1.查询用户信息
         User user = userMapper.selectById(1L);
@@ -62,7 +62,7 @@ class MybatisPlusApplicationTests {
         userMapper.updateById(user);
     }
 
-    @Test//测试乐观锁失败  多线程下
+    @Test// 测试乐观锁失败  多线程下
     public void testOptimisticLocker2(){
         //线程1
         User user1 = userMapper.selectById(1L);
@@ -130,10 +130,18 @@ class MybatisPlusApplicationTests {
         userMapper.deleteByMap(map);
     }
 
-    @Test
+    @Test // 测试根据id删除
     public void testDeleteById1(){
         int count = userMapper.deleteById(1596121094836748289L);
         log.debug("删除成功!影响数据的条数为:{}",count);
+    }
+
+    @Test // 测试性能分析插件后的查询列表
+    public void contextLoads1() {
+        //参数是一个wrapper ，条件构造器，这里我们先不用 null
+        //查询全部的用户
+        List<User> userList = userMapper.selectList(null);
+        userList.forEach(System.out::println);
     }
 
 }

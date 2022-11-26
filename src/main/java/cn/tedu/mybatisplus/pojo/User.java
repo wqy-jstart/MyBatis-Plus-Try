@@ -19,7 +19,7 @@ public class User {
     private String email;
     @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
-    @TableField(fill = FieldFill.INSERT)
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date gmtModified;
     @Version// 乐观锁version注解
     private Integer version;
