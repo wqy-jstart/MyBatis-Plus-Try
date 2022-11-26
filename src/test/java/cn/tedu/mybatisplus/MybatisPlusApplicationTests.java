@@ -104,7 +104,7 @@ class MybatisPlusApplicationTests {
     public void testPage(){
         //参数一current：当前页   参数二size：页面大小
         //使用了分页插件之后，所有的分页操作都变得简单了
-        Page<User> page = new Page<>(1,5);
+        Page<User> page = new Page<>(1,4);
         userMapper.selectPage(page,null);
         page.getRecords().forEach(System.out::println);
         System.out.println("总页数==>"+page.getTotal());
