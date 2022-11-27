@@ -28,11 +28,15 @@ public class WskCode {
 
         // 1.全局配置
         GlobalConfig gc = new GlobalConfig();
-        gc.setOutputDir("src/main/java/cn/tedu/mybatisplus");// 输出到哪个目录
+        String projectPath = System.getProperty("user.dir");// 获取当前目录
+        gc.setOutputDir(projectPath+"/src/main/java");// 输出到哪个目录
         gc.setAuthor("java@Wqy");
+        gc.setOpen(false);
         gc.setFileOverride(false);
         gc.setServiceName("%sService");// 去掉Service的I前缀
-        gc.setIdType(IdType.AUTO);
+        gc.setIdType(IdType.ID_WORKER);
+        gc.setDateType(DateType.ONLY_DATE);
+        gc.setSwagger2(true);
 
         mpg.setGlobalConfig(gc);
 
@@ -48,7 +52,7 @@ public class WskCode {
 
         // 3.包的配置
         PackageConfig pc = new PackageConfig();
-
+        pc.setParent("cn.tedu.mybatisplus");
         pc.setEntity("pojo");
         pc.setMapper("mapper");
         pc.setService("service");
